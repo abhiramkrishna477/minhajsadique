@@ -86,7 +86,7 @@ tailwind.config = {
   /* letterbox bars */
   .letterbox-top, .letterbox-bottom{
     position:fixed; left:0; right:0; background:#000; z-index:70; pointer-events:none;
-    transition: height 1.4s cubic-bezier(.65,0,.35,1);
+    transition: height .8s cubic-bezier(.65,0,.35,1);
   }
   .letterbox-top{ top:0; }
   .letterbox-bottom{ bottom:0; }
@@ -169,7 +169,6 @@ tailwind.config = {
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="#top" class="font-display text-2xl tracking-wider">MINHAJ <span class="text-amber">SADIQUE</span></a>
       <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-[0.2em] text-stone">
-        <a href="#reel" class="hover:text-bone transition-colors">Reel</a>
         <a href="#work" class="hover:text-bone transition-colors">Work</a>
         <a href="#dailies" class="hover:text-bone transition-colors">Dailies</a>
         <a href="#about" class="hover:text-bone transition-colors">About</a>
@@ -185,27 +184,57 @@ tailwind.config = {
   <!-- HERO -->
   <header id="top" class="relative min-h-[100vh] flex items-end overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-45" poster="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2071&auto=format&fit=crop">
+      <!--
+        ============================================================
+        HERO BACKGROUND — SWAP IN YOUR GIF HERE
+        ============================================================
+        Right now the hero uses a looping <video>. To use a GIF instead:
+
+        1) Put your gif file in the same folder as this HTML
+           (e.g. "hero-bg.gif"), or host it somewhere and use its URL.
+
+        2) DELETE the whole <video>...</video> block below (the one
+           with the "hero-bg-video" id), and REPLACE it with:
+
+             <img src="hero-bg.gif" alt="" class="w-full h-full object-cover opacity-45">
+
+           That's it — just a normal <img> tag pointing at the gif.
+           Keep the same classes ("w-full h-full object-cover opacity-45")
+           so it fills the hero and matches the current darkness/tint.
+
+        3) Tips:
+           - GIFs can be heavy. Keep it under ~8-10MB and short
+             (2-4 second loop) so the page still loads fast.
+           - If it looks too bright/busy, raise the darkening by
+             lowering "opacity-45" to "opacity-30" or "opacity-25".
+           - If you want it less distracting behind the big headline
+             text, increase the gradient overlays just below this block.
+        ============================================================
+      -->
+    <video id="hero-bg-video" autoplay muted loop playsinline class="w-full h-full object-cover opacity-45" poster="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2071&auto=format&fit=crop">
         <source src="https://cdn.coverr.co/videos/coverr-film-camera-reel-spinning-4839/1080p.mp4" type="video/mp4">
       </video>
+
+        <!--<img src="minhaj sadique.png" alt="" class="w-full h-full object-cover opacity-45">-->
+
       <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/30"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-ink via-transparent to-ink"></div>
     </div>
 
     <div class="relative z-10 w-full px-6 pb-20 pt-40 max-w-7xl mx-auto">
       <div class="flex items-center gap-3 font-mono text-[11px] tracking-[0.35em] text-amber uppercase mb-6">
-        <span class="w-8 h-px bg-amber"></span> Director / Cinematographer
+        <span class="w-8 h-px bg-amber"></span> Writer / Director <span class="text-stone/60">·</span> <span class="text-stone">Project Supervisor</span>
       </div>
       <h1 class="font-display leading-[0.9] tracking-wide text-[15vw] md:text-[9vw] lg:text-[7.5vw]">
         MINHAJ<br><span class="text-transparent [-webkit-text-stroke:1px_#f2ede4]">SADIQUE</span>
       </h1>
       <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
         <p class="text-stone md:col-span-2 text-base md:text-lg font-light leading-relaxed max-w-xl">
-          I direct commercials and brand films that move people before they think — built frame by frame, cut on rhythm, lit for feeling.
+          Trying not to specialize in any one genre — trying to learn all of them. One belief drives the work: <span class="text-bone">ads should never look like an ad.</span>
         </p>
         <div class="flex md:justify-end gap-3">
-          <a href="#reel" class="sprocket-btn bg-bone text-ink px-7 py-4 rounded-full font-mono text-xs uppercase tracking-widest font-bold flex items-center gap-2 w-max">
-            <span class="fill"></span><span class="label flex items-center gap-2"><i class="fa-solid fa-play"></i> Watch Reel</span>
+          <a href="#work" class="sprocket-btn bg-bone text-ink px-7 py-4 rounded-full font-mono text-xs uppercase tracking-widest font-bold flex items-center gap-2 w-max">
+            <span class="fill"></span><span class="label flex items-center gap-2"><i class="fa-solid fa-play"></i> View The Work</span>
           </a>
         </div>
       </div>
@@ -219,33 +248,6 @@ tailwind.config = {
 
   <div class="filmstrip"></div>
 
-  <!-- SHOWREEL -->
-  <section id="reel" class="max-w-7xl mx-auto px-6 py-24">
-    <div class="reveal flex items-end justify-between mb-8 flex-wrap gap-4">
-      <div>
-        <div class="font-mono text-[10px] tracking-[0.35em] text-amber uppercase mb-3">Roll 00 — Showreel</div>
-        <h2 class="font-display text-5xl md:text-6xl tracking-wide">DIRECTOR'S REEL / 2026</h2>
-      </div>
-      <div class="font-mono text-xs text-stone">RUNTIME 01:47 · COLOR · 24FPS</div>
-    </div>
-    <div class="reveal relative rounded-sm overflow-hidden border border-line group cursor-pointer" onclick="playVideo(this)">
-      <div class="aspect-video relative w-full overflow-hidden bg-black">
-        <div class="video-facade absolute inset-0 z-10">
-          <img data-video-type="vimeo" data-video-id="1206060434" class="dynamic-thumb w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" alt="Director Showreel">
-          <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-all">
-            <div class="w-20 h-20 rounded-full border border-bone/60 flex items-center justify-center group-hover:border-amber group-hover:scale-110 transition-all">
-              <i class="fa-solid fa-play text-2xl text-bone group-hover:text-amber"></i>
-            </div>
-          </div>
-          <div class="absolute top-4 left-4 font-mono text-[10px] tracking-widest text-bone/70 uppercase bg-black/40 px-2 py-1 rounded">01:47:12:04</div>
-        </div>
-        <iframe data-src="https://player.vimeo.com/video/1206060434?h=6132f3c42e&title=0&byline=0&portrait=0" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
-  <div class="filmstrip"></div>
-
   <!-- SELECTED WORKS -->
   <main class="max-w-7xl mx-auto px-6 py-24" id="work">
     <div class="reveal mb-16">
@@ -255,6 +257,25 @@ tailwind.config = {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div class="video-card reveal bg-panel rounded-sm overflow-hidden border border-line cursor-pointer group" onclick="playVideo(this)">
+        <div class="aspect-video relative w-full overflow-hidden bg-black">
+          <div class="video-facade absolute inset-0 z-10">
+            <img data-video-type="vimeo" data-video-id="1206060434" class="dynamic-thumb w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" alt="World Cup Campaign">
+            <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-transparent transition-all">
+              <i class="fa-solid fa-circle-play text-4xl text-bone/80 group-hover:text-amber transition-transform group-hover:scale-110"></i>
+            </div>
+          </div>
+          <iframe data-src="https://player.vimeo.com/video/1206060434?h=6132f3c42e&title=0&byline=0&portrait=0" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between items-center font-mono text-[10px] uppercase tracking-widest text-stone mb-2">
+            <span>Roll 01 · Nikshan Electronics</span><span>World Cup Campaign</span>
+          </div>
+          <h4 class="font-display text-2xl tracking-wide mb-2">THE WORLD CUP PROMO EXPERIENCE</h4>
+          <p class="text-sm text-stone leading-relaxed font-light">A tournament-season campaign built to carry product through the noise of the biggest sporting event of the year.</p>
+        </div>
+      </div>
 
       <div class="video-card reveal bg-panel rounded-sm overflow-hidden border border-line cursor-pointer group" onclick="playVideo(this)">
         <div class="absolute z-20 m-4 flex items-center gap-2 bg-redcode/90 text-bone px-3 py-1 rounded-full font-mono font-bold text-[9px] tracking-widest uppercase">
@@ -271,7 +292,7 @@ tailwind.config = {
         </div>
         <div class="p-6">
           <div class="flex justify-between items-center font-mono text-[10px] uppercase tracking-widest text-stone mb-2">
-            <span>Roll 01 · Nikshan Group</span><span>Seasonal Promo</span>
+            <span>Roll 02 · Nikshan Group</span><span>Seasonal Promo</span>
           </div>
           <h4 class="font-display text-2xl tracking-wide mb-2">MONSOON SALE: INVERTERS</h4>
           <p class="text-sm text-stone leading-relaxed font-light">A strategic commercial for essential power-backup solutions, cut for urgency and driven by weather.</p>
@@ -290,7 +311,7 @@ tailwind.config = {
         </div>
         <div class="p-6">
           <div class="flex justify-between items-center font-mono text-[10px] uppercase tracking-widest text-stone mb-2">
-            <span>Roll 02 · Teresa Designs</span><span>Fashion Film</span>
+            <span>Roll 03 · Teresa Designs</span><span>Fashion Film</span>
           </div>
           <h4 class="font-display text-2xl tracking-wide mb-2">TIMELESS FASHION COLLECTION</h4>
           <p class="text-sm text-stone leading-relaxed font-light">Elegant, minimal fashion coverage — soft key light, slow glides, garments allowed to breathe.</p>
@@ -309,7 +330,7 @@ tailwind.config = {
         </div>
         <div class="p-6">
           <div class="flex justify-between items-center font-mono text-[10px] uppercase tracking-widest text-stone mb-2">
-            <span>Roll 03 · Nikshan Group</span><span>Product Film</span>
+            <span>Roll 04 · Nikshan Group</span><span>Product Film</span>
           </div>
           <h4 class="font-display text-2xl tracking-wide mb-2">AIR CONDITIONER COMMERCIAL</h4>
           <p class="text-sm text-stone leading-relaxed font-light">A narrative spot built around comfort — cool tones, quiet spaces, a home exhaling.</p>
@@ -328,7 +349,7 @@ tailwind.config = {
         </div>
         <div class="p-6">
           <div class="flex justify-between items-center font-mono text-[10px] uppercase tracking-widest text-stone mb-2">
-            <span>Roll 04 · Nikshan Group</span><span>Cinematic Promo</span>
+            <span>Roll 05 · Nikshan Group</span><span>Cinematic Promo</span>
           </div>
           <h4 class="font-display text-2xl tracking-wide mb-2">WASH SMARTER, LIVE EASIER</h4>
           <p class="text-sm text-stone leading-relaxed font-light">High-impact product storytelling — performance and trust, shot like a mini feature.</p>
@@ -338,7 +359,7 @@ tailwind.config = {
       <div class="col-span-1 md:col-span-2 mt-2">
         <div class="reveal clapper relative bg-panel rounded-sm p-1 grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden border border-line group cursor-pointer mt-4" onclick="playVideo(this)">
           <div class="p-10 md:p-14 flex flex-col justify-center relative">
-            <div class="font-mono text-[10px] tracking-[0.35em] text-amber uppercase mb-4">Roll 05 — Flagship</div>
+            <div class="font-mono text-[10px] tracking-[0.35em] text-amber uppercase mb-4">Roll 06 — Flagship</div>
             <h4 class="font-display text-4xl md:text-5xl mb-4 tracking-wide group-hover:text-amber transition-colors">NIKSHAN GRAND SHOWROOM</h4>
             <p class="text-stone mb-8 leading-relaxed font-light">A large-scale cinematic showcase of a retail flagship — wide establishing moves into intimate product detail.</p>
             <div class="flex items-center gap-3 text-bone font-mono text-xs uppercase tracking-widest"><i class="fa-solid fa-circle-play text-xl text-amber"></i> Watch Feature</div>
@@ -400,14 +421,14 @@ tailwind.config = {
     <div class="fade-mask">
       <div class="marquee-track font-display text-3xl md:text-4xl tracking-widest text-stone/70 gap-10">
         <span class="flex gap-10 pr-10">
-          <span>DIRECTOR</span><span class="text-amber">·</span><span>CINEMATOGRAPHER</span><span class="text-amber">·</span>
-          <span>COMMERCIALS</span><span class="text-amber">·</span><span>BRAND FILM</span><span class="text-amber">·</span>
-          <span>MUSIC VIDEO</span><span class="text-amber">·</span>
+          <span>WRITER</span><span class="text-amber">·</span><span>DIRECTOR</span><span class="text-amber">·</span>
+          <span>PROJECT SUPERVISOR</span><span class="text-amber">·</span><span>COMMERCIALS</span><span class="text-amber">·</span>
+          <span>BRAND FILM</span><span class="text-amber">·</span><span>ADS SHOULD NEVER LOOK LIKE AN AD</span><span class="text-amber">·</span>
         </span>
         <span class="flex gap-10 pr-10">
-          <span>DIRECTOR</span><span class="text-amber">·</span><span>CINEMATOGRAPHER</span><span class="text-amber">·</span>
-          <span>COMMERCIALS</span><span class="text-amber">·</span><span>BRAND FILM</span><span class="text-amber">·</span>
-          <span>MUSIC VIDEO</span><span class="text-amber">·</span>
+          <span>WRITER</span><span class="text-amber">·</span><span>DIRECTOR</span><span class="text-amber">·</span>
+          <span>PROJECT SUPERVISOR</span><span class="text-amber">·</span><span>COMMERCIALS</span><span class="text-amber">·</span>
+          <span>BRAND FILM</span><span class="text-amber">·</span><span>ADS SHOULD NEVER LOOK LIKE AN AD</span><span class="text-amber">·</span>
         </span>
       </div>
     </div>
@@ -426,24 +447,27 @@ tailwind.config = {
 
     <div class="lg:col-span-3 reveal">
       <h2 class="font-display text-5xl md:text-6xl tracking-wide mb-6">BEHIND THE LENS</h2>
-      <p class="text-stone leading-relaxed font-light mb-6 max-w-xl">
-        Minhaj Sadique is a director and cinematographer working across commercial, brand, and short-form film. His work leans on natural light, patient blocking, and sound design that does as much work as the picture — building spots that feel less like advertisements and more like small, well-lit stories.
+      <p class="text-stone leading-relaxed font-light mb-2 max-w-xl font-mono text-xs uppercase tracking-widest">
+        Writer / Director <span class="text-stone/50">—</span> Secondary Role: Project Supervisor
+      </p>
+      <p class="text-stone leading-relaxed font-light mb-6 max-w-xl mt-4">
+        Minhaj Sadique writes and directs across commercial, brand, and short-form film — deliberately trying not to specialize in any one genre, and instead trying to learn all of them. Every project is built around a single belief: <span class="text-bone">ads should never look like an ad.</span>
       </p>
       <p class="text-stone leading-relaxed font-light mb-10 max-w-xl">
-        Based between the set and the edit bay, he collaborates closely with brands to develop concept, shot list, and final grade — one continuous process rather than a handoff.
+        As Project Supervisor, he stays close to the work end to end — concept, shot list, set, and final grade — one continuous process rather than a handoff.
       </p>
 
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-line pt-8">
         <div>
+          <div class="font-display text-4xl text-amber">320+</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-stone mt-1">Projects Completed</div>
+        </div>
+        <div>
+          <div class="font-display text-4xl text-amber">4</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-stone mt-1">Years Active</div>
+        </div>
+        <div>
           <div class="font-display text-4xl text-amber">40+</div>
-          <div class="font-mono text-[10px] uppercase tracking-widest text-stone mt-1">Productions</div>
-        </div>
-        <div>
-          <div class="font-display text-4xl text-amber">7</div>
-          <div class="font-mono text-[10px] uppercase tracking-widest text-stone mt-1">Years Directing</div>
-        </div>
-        <div>
-          <div class="font-display text-4xl text-amber">12</div>
           <div class="font-mono text-[10px] uppercase tracking-widest text-stone mt-1">Brand Partners</div>
         </div>
         <div>
@@ -506,22 +530,26 @@ tailwind.config = {
   const leaderNum = document.getElementById('leaderNum');
   const lbTop = document.getElementById('lbTop');
   const lbBottom = document.getElementById('lbBottom');
-  let count = 8;
+  // Countdown: 5-4-3-2-1 at 180ms per number (~900ms) + a quick 400ms
+  // fade-out = leader is fully gone well under 2 seconds, safely under
+  // the 5-second ceiling.
+  let count = 6;
   const tick = setInterval(() => {
     count--;
     if (count >= 1) {
       leaderNum.textContent = count;
     } else {
       clearInterval(tick);
+      leader.style.transition = 'opacity .4s ease';
       leader.style.opacity = '0';
-      setTimeout(() => { leader.style.display = 'none'; }, 650);
+      setTimeout(() => { leader.style.display = 'none'; }, 400);
       lbTop.style.height = '0px';
       lbBottom.style.height = '0px';
     }
-  }, 260);
+  }, 180);
 
   // safety: never trap the user if intro fails
-  setTimeout(() => { leader.style.display = 'none'; lbTop.style.height='0px'; lbBottom.style.height='0px'; }, 4000);
+  setTimeout(() => { leader.style.display = 'none'; lbTop.style.height='0px'; lbBottom.style.height='0px'; }, 3000);
 
   // ---- Aperture cursor ----
   const cursor = document.getElementById('cursor');
